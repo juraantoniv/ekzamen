@@ -17,6 +17,7 @@ const Buttons = (props:contProps) => {
     const resetCount = () => setCount(0)
 
     const contValid = count === 0
+
     const fiveValid = count === 5
 
 
