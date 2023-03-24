@@ -24,8 +24,11 @@ const Buttons = (props:contProps) => {
 
     return (
         <div className={cs.button}>
+
             <SuperButton callBack={addCount} count={count} disabled={fiveValid}/>
+
             <SuperButton callBack={resetCount} disabled={contValid} name={'Reset'}/>
+
         </div>
     );
 };
