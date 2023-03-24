@@ -1,24 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import val from './app.module.css'
+import Buttons from "./components/Buttons";
 
 function App() {
+
+  const [count,setCount] = useState<number>(0)
+
+    const countClass = `${count===5?val.red:''}`
+    const finalClass = `${val.box} ${countClass}`
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={val.all}>
+          <div className={finalClass}>{count}</div>
+          <Buttons
+              count={count}
+              setCount={setCount}
+          />
     </div>
   );
 }

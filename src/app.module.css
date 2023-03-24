@@ -1,0 +1,33 @@
+.red{
+
+  background-color: red !important;
+}
+
+.all{
+  margin: 100px 200px;
+  height: 300px;
+  width: 200px;
+  background: antiquewhite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 5px;
+  border: 1px solid burlywood;
+
+}
+
+.box{
+  width:180px;
+  height: 160px;
+  background-color: bisque;
+  border-radius: 5px;
+  border: 1px solid burlywood;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  font-size: 50px;
+
+}

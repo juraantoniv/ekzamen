@@ -1,0 +1,18 @@
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 50px;
+    width: 150px;
+    background: bisque;
+    border-radius: 5px;
+    border: 1px solid burlywood;
+
+}
+
+button{
+    background: bisque;
+    border: 1px solid burlywood;
+    border-radius: 3px;
+}
