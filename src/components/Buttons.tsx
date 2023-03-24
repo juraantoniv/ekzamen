@@ -14,13 +14,13 @@ const Buttons = (props:contProps) => {
     const {count,setCount} = props
 
 
-    const resetCount=()=> setCount(0)
+    const resetCount = () => setCount(0)
 
-    const contValid = count===0
+    const contValid = count === 0
     const fiveValid = count === 5
 
 
-    const addCount=()=> setCount(count+1)
+    const addCount = () => setCount(count + 1)
 
     return (
         <div className={cs.button}>

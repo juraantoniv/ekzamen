@@ -7,6 +7,7 @@ function App() {
   const [count,setCount] = useState<number>(0)
 
     const countClass = `${count===5?val.red:''}`
+
     const finalClass = `${val.box} ${countClass}`
 
 

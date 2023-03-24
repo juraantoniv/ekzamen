@@ -10,11 +10,11 @@ type buttonProps ={
 
 const SuperButton = (props:buttonProps) => {
 
-    const {callBack,count,disabled,name}=props
+    const {callBack,count,disabled,name} = props
 
     return (
         <div>
-            <button onClick={callBack} disabled={disabled}>{name && <div>{name}</div>} {count}</button>
+            <button onClick={callBack} disabled={disabled}>{name && <>{name}</>} {count}</button>
         </div>
     );
 };
