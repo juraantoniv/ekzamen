@@ -1,13 +1,12 @@
 .red{
-
-  background-color: red !important;
+  background-color: red!important;
 }
 
 .all{
   margin: 100px 200px;
   height: 300px;
   width: 200px;
-  background: antiquewhite;
+  background-color: antiquewhite;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,16 +17,31 @@
 }
 
 .box{
+  background-color: bisque;
   width:180px;
   height: 160px;
-  background-color: bisque;
   border-radius: 5px;
   border: 1px solid burlywood;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
   display: flex;
   justify-content: center;
   text-align: center;
   align-items: center;
+  font-size: 50px;
+}
+
+.settingsClass{
+  background-color: bisque;
+  width:180px;
+  height: 160px;
+  border-radius: 5px;
+  border: 1px solid burlywood;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
   font-size: 50px;
 
 }

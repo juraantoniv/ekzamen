@@ -5,16 +5,23 @@ type buttonProps ={
     callBack:()=>void
     count?:number
     name?:string
-    disabled:boolean
+    disabled?:boolean
 }
 
-const SuperButton = (props:buttonProps) => {
+const SuperButton:React.FC<buttonProps> = ({
+    callBack,
+    count,
+    disabled,
+    ...restProps
 
-    const {callBack,count,disabled,name} = props
+}) => {
+
+
+
 
     return (
         <div>
-            <button onClick={callBack} disabled={disabled}>{name && <>{name}</>} {count}</button>
+            <button onClick={callBack} disabled={disabled}>{restProps.name && <>{restProps.name}</>} {count}</button>
         </div>
     );
 };
