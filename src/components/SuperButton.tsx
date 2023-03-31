@@ -21,7 +21,7 @@ const SuperButton:React.FC<buttonProps> = ({
 
     return (
         <div>
-            <button onClick={callBack} disabled={disabled}>{restProps.name && <>{restProps.name}</>} {count}</button>
+            <button onClick={callBack} disabled={disabled}>{restProps.name}</button>
         </div>
     );
 };

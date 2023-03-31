@@ -1,50 +1,57 @@
 import React, {useEffect, useState} from 'react';
 import cs from './button.module.css'
 import SuperButton from "./SuperButton";
+import {Badge, ButtonGroup} from "@mui/material";
 
 
 type contProps = {
-        count:number,
-        setCount:(value:number)=>void
-        setSet:()=>void
-        show:boolean
-       setShowValue:(st:boolean)=>void
+    count: number,
+    setCount: (value: number) => void
+    setSet: () => void
+    show: boolean
+    setShowValue: (st: boolean) => void
+    value: number[]
+    setValue: (st: number[]) => void
 }
 
 
-const Buttons:React.FC<contProps> = ({
-    count,
-    setCount,
-    show,
-    setSet,
-    setShowValue
-                                     }) => {
-
-
-
+const Buttons: React.FC<contProps> = ({
+                                          count,
+                                          setCount,
+                                          show,
+                                          setSet,
+                                          setShowValue,
+                                          value,
+                                          setValue
+                                      }) => {
 
 
     const resetCount = () => {
 
-        setCount(0)
-        localStorage.setItem('valueOfCounter',JSON.stringify(0))
+        localStorage.setItem('valueOfCounter', JSON.stringify(0))
+        const valueAfterUpdate = localStorage.getItem('valueOfSettings')
+
+        if (valueAfterUpdate) {
+            const newVal = JSON.parse(valueAfterUpdate)
+            setCount(+newVal[0])
+        }
+
     }
 
-    const contValid = count === 0
 
-    const fiveValid = count === 5
+    const fiveValid = count === value[1]
 
-useEffect(()=>{
+    console.log(value[1]);
 
-        if (count!==0){
+    useEffect(() => {
 
-            localStorage.setItem('valueOfCounter',JSON.stringify(count))
+        if (count !== 0) {
+
+            localStorage.setItem('valueOfCounter', JSON.stringify(count))
 
         }
 
-},[count])
-
-
+    }, [count])
 
 
     const addCount = () => {
@@ -57,11 +64,17 @@ useEffect(()=>{
     return (
         <div className={cs.button}>
 
-            <SuperButton callBack={addCount} count={count} disabled={fiveValid}/>
 
-            <SuperButton callBack={resetCount} disabled={contValid} name={'Reset'}/>
+            <Badge badgeContent={count} color="primary">
 
-            <SuperButton callBack={setSet}  name={'SetSettings'}/>
+                <SuperButton callBack={addCount} count={count} disabled={fiveValid} name={'+'}/>
+            </Badge>
+
+
+            <SuperButton callBack={resetCount} name={'Reset'}/>
+
+            <SuperButton callBack={setSet} name={'Settings'}/>
+
 
         </div>
     );
