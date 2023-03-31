@@ -1,4 +1,6 @@
+import { Button } from '@mui/material';
 import React from 'react';
+import s from './button.module.css'
 
 
 type buttonProps ={
@@ -21,7 +23,8 @@ const SuperButton:React.FC<buttonProps> = ({
 
     return (
         <div>
-            <button onClick={callBack} disabled={disabled}>{restProps.name}</button>
+            {/*<button onClick={callBack} disabled={disabled}>{restProps.name}</button>*/}
+            <Button className={s.buttonFor} onClick={callBack} disabled={disabled} variant="text">{restProps.name}</Button>
         </div>
     );
 };

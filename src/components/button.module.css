@@ -8,17 +8,18 @@
     background: bisque;
     border-radius: 5px;
     border: 1px solid burlywood;
-
-
+    box-sizing: border-box;
 
 }
 
-button{
+.buttonFor{
     background: bisque;
     border: 1px solid burlywood;
     border-radius: 3px;
     margin: 10px;
     height: 50px;
     min-width: 40px;
+    font-size: 8px;
+    color: black;
 
 }
