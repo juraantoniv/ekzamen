@@ -100,18 +100,15 @@ function App() {
 
                </div>}
 
-
                { error && <Alert variant="filled" severity="error" className={val.error}>
                    {error}
+
                </Alert>}
 
 
               <Buttons
-
                   count={count}
-
                   setCount={setCount}
-
                   setSet={setSet}
                   setShowValue={ setShowValue}
                   setError={setError}
