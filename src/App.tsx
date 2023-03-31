@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import val from './app.module.css'
 import Buttons from "./components/Buttons";
-import {Slider} from "@mui/material";
+import {Alert, Slider} from "@mui/material";
 
 function App() {
 
@@ -9,6 +9,7 @@ function App() {
     const [value, setValue] = React.useState<number[]>([0,10]);
     const [count,setCount] = useState<number>(value[0])
     const [show,setShowValue] = useState<boolean>(true)
+    const [error,setError] = useState<string>('')
 
     const countClass = ` ${count === value[1] ? val.red : val.box} `
 
@@ -17,6 +18,7 @@ function App() {
 
     const setSet =()=>{
         setShowValue(!show)
+
 
 
     }
@@ -67,10 +69,18 @@ function App() {
         setValue(newValue as number[]);
         setCount(value[0])
         value[1]=count
+
+        if (value[0]<count){
+
+            setError(`Value ${count} is out of than rage of settings`)
+        }
+
     };
     function valuetext(value: number) {
         return `${value}`;
     }
+
+
 
 
     return (
@@ -87,9 +97,13 @@ function App() {
                        valueLabelDisplay="auto"
                        getAriaValueText={valuetext}
                    />
-                   {/*<Slider defaultValue={30} step={10} marks min={10} max={110} disabled />*/}
+
                </div>}
 
+
+               { error && <Alert variant="filled" severity="error" className={val.error}>
+                   {error}
+               </Alert>}
 
 
               <Buttons
@@ -100,7 +114,7 @@ function App() {
 
                   setSet={setSet}
                   setShowValue={ setShowValue}
-
+                  setError={setError}
                   show={show}
                   value={value}
                   setValue={setValue}

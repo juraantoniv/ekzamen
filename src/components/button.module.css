@@ -1,6 +1,6 @@
 .button{
     display: flex;
-
+    margin-top: 10px;
     align-items: center;
     gap: 10px;
     height: 90px;

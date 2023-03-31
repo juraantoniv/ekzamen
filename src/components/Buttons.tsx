@@ -12,6 +12,7 @@ type contProps = {
     setShowValue: (st: boolean) => void
     value: number[]
     setValue: (st: number[]) => void
+    setError:(st:string)=>void
 }
 
 
@@ -22,7 +23,8 @@ const Buttons: React.FC<contProps> = ({
                                           setSet,
                                           setShowValue,
                                           value,
-                                          setValue
+                                          setValue,
+                                          setError
                                       }) => {
 
 
@@ -34,6 +36,8 @@ const Buttons: React.FC<contProps> = ({
         if (valueAfterUpdate) {
             const newVal = JSON.parse(valueAfterUpdate)
             setCount(+newVal[0])
+            setError('')
+
         }
 
     }
@@ -49,16 +53,20 @@ const Buttons: React.FC<contProps> = ({
 
             localStorage.setItem('valueOfCounter', JSON.stringify(count))
 
+
         }
 
     }, [count])
 
 
+    console.log(value);
+
     const addCount = () => {
 
         setCount(count + 1)
         setShowValue(true)
-
+        setValue([count+1,value[1]])
+        setError('')
     }
 
     return (
