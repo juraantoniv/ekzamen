@@ -45,7 +45,7 @@ const Buttons: React.FC<contProps> = ({
 
     const fiveValid = count === value[1]
 
-    console.log(value[1]);
+
 
     useEffect(() => {
 
@@ -59,7 +59,7 @@ const Buttons: React.FC<contProps> = ({
     }, [count])
 
 
-    console.log(value);
+   
 
     const addCount = () => {
 

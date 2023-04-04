@@ -22,10 +22,10 @@ const SuperButton:React.FC<buttonProps> = ({
 
 
     return (
-        <div>
-            <button onClick={callBack} disabled={disabled}>{restProps.name}</button>
-            {/*<Button  className={s.buttonFor} onClick={callBack} disabled={disabled} variant="outlined">{restProps.name}</Button>*/}
-        </div>
+        <>
+            {/*<button className={s.buttonFor} onClick={callBack} disabled={disabled}>{restProps.name}</button>*/}
+            <Button className={s.buttonFor} onClick={callBack} disabled={disabled} variant="outlined">{restProps.name}</Button>
+        </>
     );
 };
 
