@@ -9,7 +9,8 @@
     background: bisque;
     border-radius: 5px;
     border: 1px solid burlywood;
-
+    justify-content: center;
+    display: flex;
 
 }
 
@@ -19,7 +20,8 @@
     border-radius: 8px;
     margin: 10px;
     height: 40px;
-    min-width: 40px;
-    font-size: 5px;
+    min-width: 50px;
+    font-size: 7px;
+
 
 }
