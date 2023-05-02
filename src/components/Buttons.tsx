@@ -2,30 +2,30 @@ import React, {useEffect, useState} from 'react';
 import cs from './button.module.css'
 import SuperButton from "./SuperButton";
 import {Badge, ButtonGroup} from "@mui/material";
+import val from '../app.module.css'
+import {useDispatch, useSelector} from "react-redux";
+import {AppRoot} from "../redax/redusers/store";
+import {bolAC, countAC, countArrayAC, errorAC, initialStateType} from "../redax/redusers/count-reducer";
 
 
 type contProps = {
-    count: number,
-    setCount: (value: number) => void
     setSet: () => void
-    show: boolean
-    setShowValue: (st: boolean) => void
-    value: number[]
-    setValue: (st: number[]) => void
-    setError:(st:string)=>void
+    changeColor:()=>void
 }
 
 
 const Buttons: React.FC<contProps> = ({
-                                          count,
-                                          setCount,
-                                          show,
                                           setSet,
-                                          setShowValue,
-                                          value,
-                                          setValue,
-                                          setError
+                                          changeColor
                                       }) => {
+
+
+    const {count,value,error,show} = useSelector<AppRoot,initialStateType>(
+        ({count}) =>count
+    );
+
+    const dispach = useDispatch()
+
 
 
     const resetCount = () => {
@@ -35,8 +35,9 @@ const Buttons: React.FC<contProps> = ({
 
         if (valueAfterUpdate) {
             const newVal = JSON.parse(valueAfterUpdate)
-            setCount(+newVal[0])
-            setError('')
+            dispach(countAC(+newVal[0]+1))
+            dispach(errorAC(''))
+            changeColor()
 
         }
 
@@ -62,11 +63,11 @@ const Buttons: React.FC<contProps> = ({
    
 
     const addCount = () => {
-
-        setCount(count + 1)
-        setShowValue(true)
-        setValue([count+1,value[1]])
-        setError('')
+        let st = count+1
+        dispach(countAC(st))
+        dispach(bolAC(true))
+        dispach(countArrayAC([count,value[1]]))
+        dispach(errorAC(''))
     }
 
     return (

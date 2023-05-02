@@ -2,24 +2,39 @@ import React, {useEffect, useState} from 'react';
 import val from './app.module.css'
 import Buttons from "./components/Buttons";
 import {Alert, Slider} from "@mui/material";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRoot} from "./redax/redusers/store";
+import {bolAC, countAC, countArrayAC, errorAC, initialStateType} from "./redax/redusers/count-reducer";
 
 function App() {
 
 
-    const [value, setValue] = React.useState<number[]>([0,10]);
-    const [count,setCount] = useState<number>(value[0])
-    const [show,setShowValue] = useState<boolean>(true)
-    const [error,setError] = useState<string>('')
+    const {count,value,error,show} = useSelector<AppRoot,initialStateType>(
+        (state) =>state.count
+    );
 
-    const countClass = ` ${count === value[1] ? val.red : val.box} `
+    const dispach = useDispatch()
 
-    const finalClass = `${val.box} ${countClass}`
+
+
+    let countClass = ` ${count=== value[1] ? val.red : val.box} `
+
+    let finalClass = `${val.box} ${countClass}`
+
+
+
+
 
 
     const setSet =()=>{
-        setShowValue(!show)
+
+        dispach(bolAC(!show))
 
 
+    }
+    const changeColor = () => {
+        countClass=`${val.box}`
+        finalClass = `${countClass}`
 
     }
 
@@ -33,8 +48,7 @@ function App() {
         if (valueAfterUpdate){
 
             const valueAfterParse = JSON.parse(valueAfterUpdate)
-
-            setCount(Number(valueAfterParse))
+            dispach(countAC(Number(valueAfterParse)))
         }
 
         const valueAfterUpdates = localStorage.getItem('valueOfSettings')
@@ -45,11 +59,12 @@ function App() {
 
             const valueAfterParse = JSON.parse(valueAfterUpdates)
 
-            setValue(valueAfterParse)
+            dispach(countArrayAC(valueAfterParse))
+
         }
 
 
-    },[])
+    },[finalClass])
 
 
 
@@ -61,18 +76,19 @@ function App() {
 
         }
 
-    },[value])
+    },[value,finalClass])
 
 
 
     const handleChange = (event: Event, newValue: number | number[]) => {
-        setValue(newValue as number[]);
-        setCount(value[0])
+        dispach(countArrayAC(newValue as number[]))
+        dispach(countAC(value[0]-1))
+
         value[1]=count
 
-        if (value[0]<count){
+        if (value[0]-1<count){
 
-            setError(`Value ${count} is out of than rage of settings`)
+            dispach(errorAC(`Value ${value[0]-1} is out of than rage of settings`))
         }
 
     };
@@ -107,14 +123,9 @@ function App() {
 
 
               <Buttons
-                  count={count}
-                  setCount={setCount}
+
                   setSet={setSet}
-                  setShowValue={ setShowValue}
-                  setError={setError}
-                  show={show}
-                  value={value}
-                  setValue={setValue}
+                  changeColor={changeColor}
               />
           </div>
 
