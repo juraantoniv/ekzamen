@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import val from './app.module.css'
 import Buttons from "./components/Buttons";
 import {Alert, Slider} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRoot} from "./redax/redusers/store";
 import {bolAC, countAC, countArrayAC, errorAC, initialStateType} from "./redax/redusers/count-reducer";
+import {loadState, loadStateSettings, saveSettings} from "./functions/func";
 
 function App() {
 
@@ -26,40 +27,37 @@ function App() {
 
 
 
-    const setSet =()=>{
+    const setSet = useCallback(()=>{
 
         dispach(bolAC(!show))
 
 
-    }
-    const changeColor = () => {
+    },[])
+
+    const changeColor = useCallback(() => {
         countClass=`${val.box}`
         finalClass = `${countClass}`
 
-    }
+    },[])
 
     useEffect(()=>{
 
-
-        const valueAfterUpdate = localStorage.getItem('valueOfCounter')
+        const valueAfterUpdate = loadState()
 
 
 
         if (valueAfterUpdate){
 
-            const valueAfterParse = JSON.parse(valueAfterUpdate)
-            dispach(countAC(Number(valueAfterParse)))
+            dispach(countAC(Number(valueAfterUpdate)))
         }
 
-        const valueAfterUpdates = localStorage.getItem('valueOfSettings')
-
+        const valueAfterUpdates = loadStateSettings()
 
 
         if (valueAfterUpdates){
 
-            const valueAfterParse = JSON.parse(valueAfterUpdates)
 
-            dispach(countArrayAC(valueAfterParse))
+            dispach(countArrayAC(valueAfterUpdates))
 
         }
 
@@ -72,7 +70,7 @@ function App() {
 
         if (value[0]!==0) {
 
-            localStorage.setItem('valueOfSettings', JSON.stringify(value))
+            saveSettings(value)
 
         }
 
@@ -84,14 +82,16 @@ function App() {
         dispach(countArrayAC(newValue as number[]))
         dispach(countAC(value[0]-1))
 
-        value[1]=count
+        // value[1]=count
 
         if (value[0]-1<count){
 
             dispach(errorAC(`Value ${value[0]-1} is out of than rage of settings`))
         }
 
-    };
+    }
+
+
     function valuetext(value: number) {
         return `${value}`;
     }
